@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    /* Add any custom styles here */
+    .card {
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">NAIZA CHEMIST</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view_cart') }}">View Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('add_product') }}">Add Product</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Product Section -->
+  <div class="container mt-5">
+    <h2 class="text-center mb-5">MEDICINES</h2>
+    <div class="row">
+      {% for product_id, product in products.items() %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="{{ url_for('static', filename='images/product' + product_id|string + '.png') }}"
+            alt="{{ product['name'] }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product['name'] }}</h5>
+            <p class="card-text">Ksh.{{ product['price'] }}</p>
+            <form action="{{ url_for('add_to_cart', product_id=product_id) }}" method="post">
+              <!-- Form to add product to cart -->
+              <input type="hidden" name="quantity" value="1"> <!-- Default quantity is 1 -->
+              <button type="submit" class="btn btn-primary">Add to Cart</button> <!-- Add to Cart Button -->
+              <button type="submit" class="btn btn-success">Edit Product</button> <!-- Edit Product Button -->
+              <button type="submit" class="btn btn-danger">Delete</button> <!-- Delete Product Button -->
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

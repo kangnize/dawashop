@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+        .receipt-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .receipt-header {
+            text-align: center;
+        }
+        .receipt-details {
+            margin-top: 20px;
+        }
+        .receipt-details th, .receipt-details td {
+            padding: 10px;
+            text-align: left;
+        }
+        .receipt-total {
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt-container">
+        <h2 class="receipt-header">Receipt</h2>
+        <table class="receipt-details">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product_id, details in cart_items.items() %}
+                <tr>
+                    <td>{{ details.name }}</td>
+                    <td>{{ details.quantity }}</td>
+                    <td>{{ details.price }}</td>
+                    <td>{{ details.price * details.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="receipt-total">Total Price: Ksh.{{ total_price }}</p>
+    </div>
+</body>
+</html>

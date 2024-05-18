@@ -1,0 +1,33 @@
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/static/images/back.png'); /* Adjust the path to your image */
+  background-color: #f8f9fa;
+  background-size: cover; /* Ensure the background covers the entire body */
+  background-position: center;
+  height: 100vh; /* Ensure background covers entire viewport height */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+.container {
+  color: #343a40; /* Changed text color for better readability */
+  max-width: 100%; /* Set maximum width to prevent content overflow */
+  padding: 0 15px; /* Added padding to the sides */
+  text-align: center; /* Center align text content */
+}
+footer {
+  background-color: #007af3;
+  color: white;
+  padding: 20px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.navbar-brand {
+  font-weight: bold; /* Make the brand name bold */
+}
+.nav-link {
+  color: white; /* Change nav link color to white */
+}
